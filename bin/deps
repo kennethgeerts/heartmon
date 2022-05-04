@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+echo "Updating gem dependencies..."
+bundle update
+
+echo "Updating js dependencies..."
+yarn upgrade -L
