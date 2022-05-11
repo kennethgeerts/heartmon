@@ -1,1 +1,38 @@
-Code is <code><%= @code %></code>.
+<div class="box has-background-grey has-text-centered has-text-light">
+  <h1 class="is-title is-size-3">
+    <%= @game.client %> – <%= @game.name %>
+  </h1>
+  <h2 class="is-title is-size-5">
+    Starts <%= time_tag @game.start_at %><br />
+    Ends <%= time_tag @game.stop_at %>
+  </h2>
+</div>
+
+<div class="columns is-multiline">
+  <% @game.teams.each do |team| %>
+    <div class="column is-half">
+      <%= tag.div data: { controller: 'team-heartbeat', 'team-heartbeat-team-value': team }, class: 'team-heartbeat' do %>
+        <p class="has-text-right">
+          <span class="tag is-medium">
+            <%= team.name %>&nbsp;
+            <span data-team-heartbeat-target="heartEmoji">🤍</span>
+          </span>
+        </p>
+        <h1 data-team-heartbeat-target="averageHeartRate" class="is-size-3 has-text-centered has-text-weight-semibold">averageHeartRate</h1>
+        <h1 data-team-heartbeat-target="heartRate" class="is-size-3 has-text-centered has-text-weight-semibold">heartRate</h1>
+        <h2 data-team-heartbeat-target="measuredAt" class="is-size-6 has-text-centered">measuredAt</h2>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<%= tag.div data: { controller: 'live-heartbeat', 'live-heartbeat-team-value': @team }, class: 'live-heartbeat' do %>
+  <p class="has-text-right">
+    <span class="tag is-medium">
+      <%= @team.name %>&nbsp;
+      <span data-live-heartbeat-target="heartEmoji">🤍</span>
+    </span>
+  </p>
+  <h1 data-live-heartbeat-target="heartRate" class="is-size-1 has-text-centered has-text-light has-text-weight-semibold"></h1>
+  <h2 data-live-heartbeat-target="measuredAt" class="is-size-6 has-text-centered has-text-light"></h2>
+<% end %>
