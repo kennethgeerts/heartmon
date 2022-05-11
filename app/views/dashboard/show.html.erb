@@ -15,12 +15,14 @@
         <p class="has-text-right">
           <span class="tag is-medium">
             <%= team.name %>&nbsp;
-            <span data-team-heartbeat-target="heartEmoji">🤍</span>
+            <% if team.live? %>❤️<% else %>🤍<% end %>
           </span>
         </p>
-        <h1 data-team-heartbeat-target="averageHeartRate" class="is-size-3 has-text-centered has-text-weight-semibold">averageHeartRate</h1>
-        <h1 data-team-heartbeat-target="heartRate" class="is-size-3 has-text-centered has-text-weight-semibold">heartRate</h1>
-        <h2 data-team-heartbeat-target="measuredAt" class="is-size-6 has-text-centered">measuredAt</h2>
+        <% if team.last_heart_rate %>
+          <h1 class="is-size-1 has-text-centered has-text-weight-semibold"><%= team.last_heart_rate.rate %></h1>
+          <h1 class="is-size-4 has-text-centered has-text-weight-semibold">avg <%= team.average_heart_rate %></h1>
+          <h2 class="is-size-6 has-text-centered"><%= time_tag(team.last_heart_rate.time, format: '%H:%M:%S') %></h2>
+        <% end %>
       <% end %>
     </div>
   <% end %>
@@ -33,6 +35,6 @@
       <span data-live-heartbeat-target="heartEmoji">🤍</span>
     </span>
   </p>
-  <h1 data-live-heartbeat-target="heartRate" class="is-size-1 has-text-centered has-text-light has-text-weight-semibold"></h1>
+  <h1 data-live-heartbeat-target="heartRate" class="is-size-1 has-text-centered has-text-light has-text-weight-semibold animate__animated animate__heartBeat"></h1>
   <h2 data-live-heartbeat-target="measuredAt" class="is-size-6 has-text-centered has-text-light"></h2>
 <% end %>

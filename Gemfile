@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby '3.0.4'
 
+# Rails Framework
 gem 'rails', '~> 7.0'
 gem 'bootsnap', require: false
 gem 'cssbundling-rails'
@@ -13,6 +14,9 @@ gem 'redis'
 gem 'requestjs-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
+
+# App
+gem 'websocket-client-simple'
 
 group :development, :test do
   gem 'debug'

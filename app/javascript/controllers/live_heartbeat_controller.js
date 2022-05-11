@@ -1,12 +1,11 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
   static targets = [ 'heartRate', 'measuredAt', 'heartEmoji' ]
   static values = { team: Object }
 
   connect() {
-    const url = `wss://dev.pulsoid.net/api/v1/data/real_time?access_token=${this.teamValue.token}`
-    const socket = new WebSocket(url)
+    const socket = new WebSocket(this.teamValue.ws_url)
     socket.onmessage = (event) => {
       const message = JSON.parse(event.data)
       console.log(message)
