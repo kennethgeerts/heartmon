@@ -3,7 +3,6 @@ class Team < ApplicationRecord
   has_many :heart_rates
 
   before_create :set_code
-  after_create :schedule_heart_rates_collection
 
   def live?
     last_heart_rate.time > 10.seconds.ago if last_heart_rate
@@ -29,13 +28,5 @@ class Team < ApplicationRecord
 
   def set_code
     self.code ||= SecureRandom.base36(6).upcase
-  end
-
-  def schedule_heart_rates_collection
-    if game.future?
-      DataCollectionJob.set(wait_until: game.start_at).perform_later(self)
-    elsif game.running?
-      DataCollectionJob.perform_later(self)
-    end
   end
 end

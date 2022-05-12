@@ -1,6 +1,8 @@
 class Game < ApplicationRecord
   has_many :teams
 
+  after_create :schedule_heart_rates_collection
+
   def running?
     Time.current.between?(start_at, stop_at)
   end
@@ -11,5 +13,15 @@ class Game < ApplicationRecord
 
   def ended?
     stop_at.past?
+  end
+
+  private
+
+  def schedule_heart_rates_collection
+    if future?
+      DataCollectionJob.set(wait_until: start_at).perform_later(self)
+    elsif running?
+      DataCollectionJob.perform_later(self)
+    end
   end
 end
