@@ -10,12 +10,12 @@ gem 'importmap-rails'
 gem 'pg'
 gem 'propshaft'
 gem 'puma'
-gem 'redis'
 gem 'requestjs-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
 
 # App
+gem 'sidekiq'
 gem 'websocket-client-simple'
 
 group :development, :test do
