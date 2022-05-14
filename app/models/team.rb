@@ -4,16 +4,25 @@ class Team < ApplicationRecord
 
   before_create :set_code
 
+  scope :by_current_heart_rate, -> { order(rate: 'asc') }
+  scope :by_average_heart_rate, -> { order(rate_avg: 'asc') }
+
   def live?
-    last_heart_rate.time > 10.seconds.ago if last_heart_rate
+    rate.present? && measured_at > 15.seconds.ago
   end
 
-  def last_heart_rate
-    heart_rates.last
-  end
+  def add_heart_rate(heart_rate, measured_at)
+    self.rate = heart_rate
+    self.measured_at = measured_at
+    self.rate_min = [self.rate_min || rate, rate].min
+    self.rate_max = [self.rate_max || rate, rate].max
+    self.rate_sum += heart_rate
+    self.rate_count += 1
+    save!
 
-  def average_heart_rate
-    heart_rates.average(:rate)&.round
+    if heart_rates.none? || measured_at - heart_rates.last.measured_at > 15
+      heart_rates.create(rate: heart_rate, measured_at: measured_at)
+    end
   end
 
   def ws_url

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_11_192113) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_04_123256) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,10 +25,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_11_192113) do
 
   create_table "heart_rates", force: :cascade do |t|
     t.bigint "team_id", null: false
-    t.datetime "time"
     t.integer "rate", limit: 2
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "measured_at"
     t.index ["team_id"], name: "index_heart_rates_on_team_id"
   end
 
@@ -39,6 +37,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_11_192113) do
     t.string "username"
     t.string "password"
     t.string "token"
+    t.integer "rate", limit: 2
+    t.datetime "measured_at"
+    t.integer "rate_min", limit: 2
+    t.integer "rate_max", limit: 2
+    t.integer "rate_sum", default: 0
+    t.integer "rate_count", default: 0
+    t.virtual "rate_avg", type: :integer, as: "(rate_sum / NULLIF(rate_count, 0))", stored: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_teams_on_game_id"

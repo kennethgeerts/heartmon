@@ -9,15 +9,10 @@ class DataCollectionJob < ApplicationJob
         message = JSON.parse(event.data)
         heart_rate = message['data']['heart_rate']
         measured_at = Time.at(0, message['measured_at'], :millisecond)
-        team.heart_rates.create(time: measured_at, rate: heart_rate)
-      end
-    end
 
-    loop do
-      if game.ended?
-        break
-      else
-        sleep 5
+        team.add_heart_rate(heart_rate, measured_at)
+
+        break if game.ended?
       end
     end
   end

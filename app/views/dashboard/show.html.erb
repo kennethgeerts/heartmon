@@ -9,25 +9,7 @@
 </div>
 
 <% if @game.running? %>
-  <div class="columns is-multiline">
-    <% @game.teams.each do |team| %>
-      <div class="column is-half">
-        <%= tag.div data: { controller: 'team-heartbeat', 'team-heartbeat-team-value': team }, class: 'team-heartbeat' do %>
-          <p class="has-text-right">
-            <span class="tag is-medium">
-              <%= team.name %>&nbsp;
-              <% if team.live? %>❤️<% else %>🤍<% end %>
-            </span>
-          </p>
-          <% if team.last_heart_rate %>
-            <h1 class="is-size-1 has-text-centered has-text-weight-semibold"><%= team.last_heart_rate.rate %></h1>
-            <h1 class="is-size-4 has-text-centered has-text-weight-semibold">avg <%= team.average_heart_rate %></h1>
-            <h2 class="is-size-6 has-text-centered"><%= time_tag(team.last_heart_rate.time, format: '%H:%M:%S') %></h2>
-          <% end %>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+  <%= turbo_frame_tag 'teams', src: teams_path(by: 'current_heart_rate'), data: { controller: 'refresh' } %>
 <% elsif @game.future? %>
   <div class="team-heartbeat">
     <h1 class="is-size-3 has-text-centered">
