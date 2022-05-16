@@ -18,9 +18,11 @@
           <% if team.live? %>❤️<% else %>🤍<% end %>
         </span>
       </p>
-      <% if team.rate %>
+      <% if team.rate_avg %>
+        <h1 class="is-size-4 has-text-centered has-text-weight-semibold">avg. <%= team.rate_avg %></h1>
+      <% end %>
+      <% if team.live? %>
         <h1 class="is-size-1 has-text-centered has-text-weight-semibold"><%= team.rate %></h1>
-        <h1 class="is-size-4 has-text-centered has-text-weight-semibold">avg <%= team.rate_avg %></h1>
         <h2 class="is-size-6 has-text-centered"><%= time_tag(team.measured_at, format: '%H:%M:%S') %></h2>
       <% end %>
     </div>

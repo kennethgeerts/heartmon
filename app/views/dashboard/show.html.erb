@@ -17,11 +17,12 @@
     </h1>
   </div>
 <% elsif @game.ended? %>
-  <div class="team-heartbeat">
-    <h1 class="is-size-3 has-text-centered">
-      This game has ended.
-    </h1>
-  </div>
+  <h1 class="is-size-3 has-text-centered">Ranking</h1>
+  <ol class="box has-background-info is-size-3 m-6 p-6">
+    <% @game.teams.by_average_heart_rate.each_with_index do |team| %>
+      <li><%= team.name %>: avg. <%= team.rate_avg %></li>
+    <% end %>
+  </ol>
 <% end %>
 
 <%= tag.div data: { controller: 'live-heartbeat', 'live-heartbeat-team-value': @team }, class: 'live-heartbeat' do %>

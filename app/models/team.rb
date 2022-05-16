@@ -4,11 +4,11 @@ class Team < ApplicationRecord
 
   before_create :set_code
 
-  scope :by_current_heart_rate, -> { order(rate: 'asc') }
+  scope :by_current_heart_rate, -> { order(Arel.sql "CASE WHEN measured_at < now() - interval '15 second' THEN NULL ELSE rate END") }
   scope :by_average_heart_rate, -> { order(rate_avg: 'asc') }
 
   def live?
-    rate.present? && measured_at > 15.seconds.ago
+    measured_at.present? && measured_at > 15.seconds.ago
   end
 
   def add_heart_rate(heart_rate, measured_at)
