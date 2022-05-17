@@ -1,8 +1,8 @@
 game = Game.create(
   name:     'TestGame',
   client:   'Time Out',
-  start_at: '2022-05-14 10:00:00',
-  stop_at:  '2022-05-15 16:00:00'
+  start_at: '2022-05-18 10:00:00',
+  stop_at:  '2022-05-18 17:00:00'
 )
 
 game.teams.create(
@@ -32,6 +32,6 @@ game.teams.create(
 RATES = (40..140).to_a
 game.teams.each do |team|
   100.downto(1) do |i|
-    team.add_heart_rate(RATES.sample, i.seconds.ago )
+    team.add_heart_rate(RATES.sample, i.seconds.ago)
   end
 end
