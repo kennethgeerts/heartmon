@@ -29,9 +29,10 @@ game.teams.create(
   code:     'SP1KEN'
 )
 
-RATES = (40..140).to_a
-game.teams.each do |team|
-  100.downto(1) do |i|
-    team.add_heart_rate(RATES.sample, i.seconds.ago)
-  end
-end
+# For testing
+# RATES = (40..140).to_a
+# game.teams.each do |team|
+#   100.downto(1) do |i|
+#     team.add_heart_rate(RATES.sample, i.seconds.ago)
+#   end
+# end
