@@ -5,3 +5,6 @@ bundle update
 
 echo "Updating js dependencies..."
 yarn upgrade -L
+
+echo "Fetching importmap dependecy status..."
+bin/importmap outdated

@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-ruby '3.0.4'
+ruby '3.1.2'
 
 # Rails Framework
-gem 'rails', '~> 7.0'
+gem 'rails', '~> 7.0.3'
 gem 'bootsnap', require: false
 gem 'cssbundling-rails'
 gem 'importmap-rails'
