@@ -25,13 +25,14 @@
   </ol>
 <% end %>
 
-<%= tag.div data: { controller: 'live-heartbeat', 'live-heartbeat-team-value': @team }, class: 'live-heartbeat' do %>
-  <p class="has-text-right">
-    <span class="tag is-medium">
-      <%= @team.name %>&nbsp;
-      <span data-live-heartbeat-target="heartEmoji">🤍</span>
-    </span>
-  </p>
-  <h1 data-live-heartbeat-target="heartRate" class="is-size-1 has-text-centered has-text-light has-text-weight-semibold animate__animated animate__heartBeat"></h1>
-  <h2 data-live-heartbeat-target="measuredAt" class="is-size-6 has-text-centered has-text-light"></h2>
+<% unless @game.running? %>
+  <%= tag.div data: { controller: 'live-heartbeat', 'live-heartbeat-team-value': @team }, class: 'live-heartbeat' do %>
+    <p class="has-text-right">
+      <span class="tag is-medium">
+        <%= @team.name %>&nbsp;
+        <span data-live-heartbeat-target="heartEmoji">🤍</span>
+      </span>
+    </p>
+    <h1 data-live-heartbeat-target="heartRate" class="is-size-1 has-text-centered has-text-light has-text-weight-semibold"></h1>
+  <% end %>
 <% end %>

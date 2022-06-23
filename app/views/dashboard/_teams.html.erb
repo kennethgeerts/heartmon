@@ -10,8 +10,9 @@
     </ul>
   </div>
 
-  <% teams.each do |team| %>
-    <div class="team-heartbeat">
+  <% teams.each_with_index do |team, idx| %>
+    <div class="team-heartbeat <%= 'is-active' if team == @team %>">
+      <%= idx + 1 %>
       <p class="has-text-right">
         <span class="tag is-medium">
           <%= team.name %>&nbsp;

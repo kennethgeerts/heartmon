@@ -3,6 +3,9 @@
 .team-heartbeat {
   @extend .box;
   @extend .has-background-warning;
+  &.is-active {
+    @extend .has-background-info;
+  }
 }
 
 .live-heartbeat {
