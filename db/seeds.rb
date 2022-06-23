@@ -1,8 +1,8 @@
 game = Game.create(
   name:     'TestGame',
   client:   'Time Out',
-  start_at: '2022-05-18 10:00:00',
-  stop_at:  '2022-05-18 17:00:00'
+  start_at: '2022-06-23 14:00:00',
+  stop_at:  '2022-06-23 16:00:00'
 )
 
 game.teams.create(
