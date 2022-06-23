@@ -9,7 +9,7 @@
 </div>
 
 <% if @game.running? %>
-  <%= turbo_frame_tag 'teams', src: teams_path(by: 'current_heart_rate'), data: { controller: 'refresh' } %>
+  <%= turbo_frame_tag 'teams', src: teams_path(by: 'average_heart_rate'), data: { controller: 'refresh' } %>
 <% elsif @game.future? %>
   <div class="team-heartbeat">
     <h1 class="is-size-3 has-text-centered">
