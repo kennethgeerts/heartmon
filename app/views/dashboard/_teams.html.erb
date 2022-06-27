@@ -2,10 +2,10 @@
   <div class="tabs is-toggle is-centered">
     <ul>
       <%= tag.li class: ('is-active' if params[:by] == 'average_heart_rate') do %>
-        <%= link_to 'Sort by Average Heartrate', teams_path(by: 'average_heart_rate') %>
+        <%= link_to 'Average', teams_path(by: 'average_heart_rate') %>
       <% end %>
       <%= tag.li class: ('is-active' if params[:by] == 'current_heart_rate') do %>
-        <%= link_to 'Sort by Live Heartrate', teams_path(by: 'current_heart_rate') %>
+        <%= link_to 'Live', teams_path(by: 'current_heart_rate') %>
       <% end %>
     </ul>
   </div>
