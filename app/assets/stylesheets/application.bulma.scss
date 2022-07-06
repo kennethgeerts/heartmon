@@ -1,7 +1,9 @@
 @import 'bulma/bulma';
 
 .team-heartbeat {
-  @extend .box;
+  margin: 0.25rem;
+  padding: 0.5rem;
+  border-radius: $radius;
   @extend .has-background-warning;
   &.is-active {
     @extend .has-background-info;

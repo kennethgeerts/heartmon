@@ -1,0 +1,21 @@
+<div class="team-heartbeat <%= 'is-active' if team == @team %>">
+  <div class="columns is-vcentered">
+    <div class="column is-1">
+      <span class="tag is-rounded has-text-weight-semibold"><%= ranking %></span>
+    </div>
+    <div class="column is-9 has-text-centered has-text-weight-normal">
+      <span class="is-size-5"><%= team.name %></span>
+    </div>
+    <div class="column is-2 has-text-centered">
+      <% if team.rate_avg %>
+        <span class="is-size-6 has-text-weight-light">avg. <%= team.rate_avg %></span><br>
+      <% end %>
+      <% if team.live? %>
+        <span class="is-size-5 has-text-weight-semibold"><%= team.rate %> ❤️</span><br>
+        <span class="is-size-7"><%#= time_tag(team.measured_at, format: '%H:%M:%S') %></span>
+      <% else %>
+        🤍
+      <% end %>
+    </div>
+  </div>
+</div>

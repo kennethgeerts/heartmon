@@ -1,11 +1,17 @@
-<div class="box has-background-grey has-text-centered has-text-light">
-  <h1 class="is-title is-size-3">
-    <%= @game.client %> – <%= @game.name %>
-  </h1>
-  <h2 class="is-title is-size-5">
-    Starts <%= time_tag @game.start_at %><br />
-    Ends <%= time_tag @game.stop_at %>
-  </h2>
+<div class="box has-background-grey-light has-text-centered has-text-light">
+  <div class="columns">
+    <div class="column is-8">
+      <h1 class="is-title is-size-3">
+        <%= @game.client %> – <%= @game.name %>
+      </h1>
+    </div>
+    <div class="column is-4">
+      <h2 class="is-title is-size-5">
+        Starts <%= time_tag @game.start_at %><br />
+        Ends <%= time_tag @game.stop_at %>
+      </h2>
+    </div>
+  </div>
 </div>
 
 <% if @game.running? %>
