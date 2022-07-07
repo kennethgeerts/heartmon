@@ -19,7 +19,7 @@
 <% elsif @game.future? %>
   <div class="team-heartbeat">
     <h1 class="is-size-3 has-text-centered">
-      This game will start in <%= distance_of_time_in_words(Time.current, @game.start_at) %>.
+      <%= turbo_frame_tag 'countdown', src: countdown_path, data: { controller: 'refresh' } %>
     </h1>
   </div>
 <% elsif @game.ended? %>

@@ -10,7 +10,7 @@
     </ul>
   </div>
 
-  <% teams.each_with_index do |team, idx| %>
+  <% @teams.each_with_index do |team, idx| %>
     <%= render params[:by], team: team, ranking: idx + 1 %>
   <% end %>
 <% end %>

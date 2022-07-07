@@ -1,0 +1,9 @@
+<%= turbo_frame_tag 'countdown' do %>
+  <% if @game.future? %>
+    This game will start in <%= distance_of_time_in_words(Time.current, @game.start_at) %>.
+  <% end %>
+
+  <% if @game.running? %>
+    The game has started. <%= link_to 'Click here!', show_path, data: { 'turbo-frame': '_top' } %>
+  <% end %>
+<% end %>
